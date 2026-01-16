@@ -18,8 +18,8 @@
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: #f2f2f2;
-      color: #000; /* TEXTO NEGRO */
+      background: #f5f0e6; /* BEIGE */
+      color: #000;
     }
 
     h1, h2, h3 {
@@ -34,14 +34,18 @@
 
     /* ===== HEADER ===== */
     header {
-      background: url("img/banner.jpg") center/cover no-repeat;
-      padding: 90px 20px;
+      padding: 70px 20px 50px;
       text-align: center;
-      color: #000;
+    }
+
+    .logo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 15px;
     }
 
     header h1 {
-      font-size: 42px;
+      font-size: 40px;
       margin-bottom: 10px;
     }
 
@@ -87,9 +91,9 @@
 
     .product {
       background: #fff;
-      border-radius: 10px;
+      border-radius: 12px;
       padding: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,.12);
       transition: 0.3s;
     }
 
@@ -102,7 +106,7 @@
       width: 100%;
       height: 180px;
       object-fit: cover;
-      border-radius: 8px;
+      border-radius: 10px;
     }
 
     .product h3 {
@@ -119,11 +123,16 @@
     /* ===== FOOTER ===== */
     footer {
       background: #000;
-      color: #fff;
+      color: #f5f0e6;
       text-align: center;
-      padding: 20px;
-      font-size: 14px;
+      padding: 30px 20px;
       margin-top: 40px;
+      font-size: 14px;
+    }
+
+    footer p {
+      color: #f5f0e6;
+      margin: 6px 0;
     }
   </style>
 </head>
@@ -131,11 +140,29 @@
 <body>
 
 <header>
+
+  <!-- LOGO (SVG) -->
+  <div class="logo">
+    <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="10" width="100" height="100" rx="18" fill="#000"/>
+      <text x="60" y="58" text-anchor="middle" fill="#f5f0e6"
+            font-size="22" font-weight="600" font-family="Poppins, sans-serif">
+        MN
+      </text>
+      <text x="60" y="78" text-anchor="middle" fill="#f5f0e6"
+            font-size="10" font-family="Poppins, sans-serif">
+        Mercado Norte
+      </text>
+    </svg>
+  </div>
+
   <h1>Mercado Norte</h1>
   <p>Comprá local. Vendé fácil.</p>
+
   <a class="btn" href="https://forms.gle/kCytFPXxdgC8D1UQ8" target="_blank">
     Publicar producto
   </a>
+
 </header>
 
 <!-- ARTESANÍAS -->
@@ -173,7 +200,9 @@
 </section>
 
 <footer>
-  Mercado Norte · Marketplace local
+  <p><strong>Mercado Norte</strong></p>
+  <p>📞 Contacto: +54 3482 571032</p>
+  <p>✉️ Email: goiagus102@gmail.com</p>
 </footer>
 
 </body>
