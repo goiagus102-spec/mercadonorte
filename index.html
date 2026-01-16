@@ -5,77 +5,125 @@
   <title>Mercado Norte</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- GOOGLE FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      background: #f5f5f5;
-      color: #222;
+      font-family: 'Poppins', sans-serif;
+      background: #f2f2f2;
+      color: #000; /* TEXTO NEGRO */
     }
 
+    h1, h2, h3 {
+      font-weight: 600;
+      color: #000;
+    }
+
+    p {
+      font-weight: 400;
+      color: #000;
+    }
+
+    /* ===== HEADER ===== */
     header {
-      background: #111;
-      color: white;
-      padding: 20px;
+      background: url("img/banner.jpg") center/cover no-repeat;
+      padding: 90px 20px;
       text-align: center;
+      color: #000;
     }
 
+    header h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      background: #000;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-block;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      opacity: 0.85;
+    }
+
+    /* ===== SECCIONES ===== */
     section {
-      padding: 20px;
+      padding: 30px 20px;
+      max-width: 1100px;
+      margin: auto;
     }
 
     h2 {
-      border-left: 6px solid #111;
+      margin-bottom: 15px;
+      border-left: 6px solid #000;
       padding-left: 10px;
-      margin-top: 40px;
     }
 
+    /* ===== PRODUCTOS ===== */
     .products {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 15px;
-      margin-top: 15px;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
     }
 
     .product {
-      background: white;
-      border-radius: 8px;
+      background: #fff;
+      border-radius: 10px;
       padding: 15px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,.1);
+      transition: 0.3s;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,.2);
     }
 
     .product img {
       width: 100%;
       height: 180px;
       object-fit: cover;
-      border-radius: 6px;
+      border-radius: 8px;
     }
 
     .product h3 {
       margin: 10px 0 5px;
+      font-size: 18px;
     }
 
     .price {
-      font-weight: bold;
-      color: #008000;
+      font-weight: 600;
+      color: #000;
+      margin: 5px 0;
     }
 
-    .btn {
-      display: inline-block;
-      margin-top: 10px;
-      background: #111;
-      color: white;
-      padding: 8px 12px;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 14px;
-    }
-
+    /* ===== FOOTER ===== */
     footer {
+      background: #000;
+      color: #fff;
       text-align: center;
       padding: 20px;
       font-size: 14px;
-      color: #555;
+      margin-top: 40px;
     }
   </style>
 </head>
@@ -84,7 +132,7 @@
 
 <header>
   <h1>Mercado Norte</h1>
-  <p>Comprá y vendé en tu ciudad</p>
+  <p>Comprá local. Vendé fácil.</p>
   <a class="btn" href="https://forms.gle/kCytFPXxdgC8D1UQ8" target="_blank">
     Publicar producto
   </a>
@@ -96,7 +144,7 @@
   <div class="products">
 
     <div class="product">
-      <img src="https://via.placeholder.com/300">
+      <img src="img/producto1.jpg">
       <h3>Figura artesanal kawaii</h3>
       <p>Vendedor: RecoClay</p>
       <p>Zona: Ciudad X</p>
@@ -113,7 +161,7 @@
   <div class="products">
 
     <div class="product">
-      <img src="https://via.placeholder.com/300">
+      <img src="img/producto2.jpg">
       <h3>Remera estampada</h3>
       <p>Vendedor: NorteWear</p>
       <p>Zona: Ciudad X</p>
@@ -124,32 +172,8 @@
   </div>
 </section>
 
-<!-- COMIDA -->
-<section>
-  <h2>🍔 Comida</h2>
-  <div class="products">
-    <!-- Productos de comida -->
-  </div>
-</section>
-
-<!-- TECNOLOGÍA -->
-<section>
-  <h2>📱 Tecnología</h2>
-  <div class="products">
-    <!-- Productos tecnológicos -->
-  </div>
-</section>
-
-<!-- OTROS -->
-<section>
-  <h2>🧩 Otros</h2>
-  <div class="products">
-    <!-- Otros productos -->
-  </div>
-</section>
-
 <footer>
-  Mercado Norte · Hecho para compras locales
+  Mercado Norte · Marketplace local
 </footer>
 
 </body>
