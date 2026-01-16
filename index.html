@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mercado Norte</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f5f5f5;
+      color: #222;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    h2 {
+      border-left: 6px solid #111;
+      padding-left: 10px;
+      margin-top: 40px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .product {
+      background: white;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .product img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .product h3 {
+      margin: 10px 0 5px;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #008000;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 10px;
+      background: #111;
+      color: white;
+      padding: 8px 12px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Mercado Norte</h1>
+  <p>Comprá y vendé en tu ciudad</p>
+  <a class="btn" href="https://forms.gle/kCytFPXxdgC8D1UQ8" target="_blank">
+    Publicar producto
+  </a>
+</header>
+
+<!-- ARTESANÍAS -->
+<section>
+  <h2>🧸 Artesanías</h2>
+  <div class="products">
+
+    <div class="product">
+      <img src="https://via.placeholder.com/300">
+      <h3>Figura artesanal kawaii</h3>
+      <p>Vendedor: RecoClay</p>
+      <p>Zona: Ciudad X</p>
+      <p class="price">$12.000</p>
+      <a class="btn" href="https://wa.me/5490000000000">Contactar</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ROPA -->
+<section>
+  <h2>👕 Ropa y accesorios</h2>
+  <div class="products">
+
+    <div class="product">
+      <img src="https://via.placeholder.com/300">
+      <h3>Remera estampada</h3>
+      <p>Vendedor: NorteWear</p>
+      <p>Zona: Ciudad X</p>
+      <p class="price">$8.500</p>
+      <a class="btn" href="https://wa.me/5490000000000">Contactar</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- COMIDA -->
+<section>
+  <h2>🍔 Comida</h2>
+  <div class="products">
+    <!-- Productos de comida -->
+  </div>
+</section>
+
+<!-- TECNOLOGÍA -->
+<section>
+  <h2>📱 Tecnología</h2>
+  <div class="products">
+    <!-- Productos tecnológicos -->
+  </div>
+</section>
+
+<!-- OTROS -->
+<section>
+  <h2>🧩 Otros</h2>
+  <div class="products">
+    <!-- Otros productos -->
+  </div>
+</section>
+
+<footer>
+  Mercado Norte · Hecho para compras locales
+</footer>
+
+</body>
+</html>
