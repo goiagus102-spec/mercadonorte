@@ -150,7 +150,7 @@
 
 <section>
   <h2>🛒 Productos publicados</h2>
-   <img src="https://drive.google.com/uc?export=view&id=1iqeTSGnYzwwNMqAyxwlm0wmBClxX2whs" style="width:200px;border:2px solid red;"
+ <div class="products" id="productos"></div>
 </section>
 
 <footer>
@@ -174,7 +174,11 @@ fetch(URL)
       card.className = "product";
 
       card.innerHTML = `
-        ${img ? `<img src="${img}" alt="Producto">` : `<div style="height:180px;display:flex;align-items:center;justify-content:center;background:#eee;border-radius:10px;">Sin imagen</div>`}
+        ${
+          img
+            ? `<img src="${img}" alt="Producto">`
+            : `<div style="height:180px;display:flex;align-items:center;justify-content:center;background:#eee;border-radius:10px;">Sin imagen</div>`
+        }
         <h3>${p["Nombre del producto"] || ""}</h3>
         <p>Vendedor: ${p["Nombre del vendedor"] || ""}</p>
         <p class="price">$${p["Precio"] || ""}</p>
