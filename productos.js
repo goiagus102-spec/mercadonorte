@@ -1,3 +1,4 @@
+alert("JS CARGADO");
 const URL = "https://opensheet.elk.sh/1UmusFi6aUhxJ5xE1WfGMQ5s9DcZQ4Wx_UZw-h3-eVmI/Respuestas%20de%20formulario%201";
 
 const contenedor = document.getElementById("productos");
