@@ -5,193 +5,38 @@
   <title>Mercado Norte</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- GOOGLE FONT -->
+  <!-- FUENTE -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: #f5f0e6;
-      color: #000;
-    }
-
-    h1, h2, h3 { font-weight: 600; color: #000; }
-    p { font-weight: 400; color: #000; }
-
-    header {
-      padding: 70px 20px 50px;
-      text-align: center;
-    }
-
-    .logo {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 15px;
-    }
-
-    header h1 {
-      font-size: 40px;
-      margin-bottom: 10px;
-    }
-
-    header p {
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
-
-    .btn {
-      background: #000;
-      color: #fff;
-      padding: 12px 20px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 500;
-      display: inline-block;
-      transition: 0.3s;
-    }
-
-    .btn:hover { opacity: 0.85; }
-
-    section {
-      padding: 30px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    h2 {
-      margin-bottom: 15px;
-      border-left: 6px solid #000;
-      padding-left: 10px;
-    }
-
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 20px;
-    }
-
-    .product {
-      background: #fff;
-      border-radius: 12px;
-      padding: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,.12);
-      transition: 0.3s;
-    }
-
-    .product:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,.2);
-    }
-
-    .product img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-
-    .product h3 {
-      margin: 10px 0 5px;
-      font-size: 18px;
-    }
-
-    .price {
-      font-weight: 600;
-      color: #000;
-      margin: 5px 0;
-    }
-
-    footer {
-      background: #000;
-      color: #f5f0e6;
-      text-align: center;
-      padding: 30px 20px;
-      margin-top: 40px;
-      font-size: 14px;
-    }
-
-    footer p {
-      color: #f5f0e6;
-      margin: 6px 0;
-    }
-  </style>
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
 
 <header>
-  <div class="logo">
-    <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-      <rect x="10" y="10" width="100" height="100" rx="18" fill="#000"/>
-      <text x="60" y="58" text-anchor="middle" fill="#f5f0e6"
-            font-size="22" font-weight="600" font-family="Poppins, sans-serif">
-        MN
-      </text>
-      <text x="60" y="78" text-anchor="middle" fill="#f5f0e6"
-            font-size="10" font-family="Poppins, sans-serif">
-        Mercado Norte
-      </text>
-    </svg>
-  </div>
-
   <h1>Mercado Norte</h1>
-  <p>Comprá local. Vendé fácil.</p>
+  <p>Lo que se vende acá es real.</p>
 
-  <a class="btn" href="https://forms.gle/kCytFPXxdgC8D1UQ8" target="_blank">
+  <a class="btn" href="PEGÁ_ACÁ_TU_FORM" target="_blank">
     Publicar producto
   </a>
 </header>
 
-<section>
-  <h2>🛒 Productos publicados</h2>
-  <div class="products" id="productos"></div>
-</section>
+<main>
+  <h2>🛒 Productos</h2>
+  <div id="productos" class="products"></div>
+</main>
 
 <footer>
-  <p><strong>Mercado Norte</strong></p>
-  <p>📞 Contacto: +54 3482 571032</p>
-  <p>✉️ Email: mercadonorte94@gmail.com</p>
+  <p>Mercado Norte</p>
+  <p>Contacto: mercadonorte94@gmail.com</p>
 </footer>
 
-<script>
-const URL = "https://opensheet.elk.sh/1UmusFi6aUhxJ5xE1WfGMQ5s9DcZQ4Wx_UZw-h3-eVmI/Respuestas%20de%20formulario%201";
-
-fetch(URL)
-  .then(res => res.json())
-  .then(data => {
-    const contenedor = document.getElementById("productos");
-
-    data.reverse().forEach(p => {
-      const img = (p["Link de imagen"] || "").trim();
-
-      const card = document.createElement("div");
-      card.className = "product";
-
-      card.innerHTML = `
-        ${
-          img
-            ? `<img src="${img}" alt="Producto">`
-            : `<div style="height:180px;display:flex;align-items:center;justify-content:center;background:#eee;border-radius:10px;">Sin imagen</div>`
-        }
-        <h3>${p["Nombre del producto"] || ""}</h3>
-        <p>Vendedor: ${p["Nombre del vendedor"] || ""}</p>
-        <p class="price">$${p["Precio"] || ""}</p>
-        <a class="btn" href="${p["Contacto"] || "#"}" target="_blank">
-          Contactar
-        </a>
-      `;
-
-      contenedor.appendChild(card);
-    });
-  })
-  .catch(err => console.error("Error cargando productos:", err));
-</script>
-
-
+<!-- JS -->
+<script src="js/productos.js"></script>
 </body>
 </html>
+
