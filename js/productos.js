@@ -61,6 +61,11 @@ function normalizarProducto(fila) {
       "descripcion",
       "detalle"
     ]),
+    tiempo: obtenerCampo(fila, [
+      "tiempodeproduccion",
+      "produccion",
+      "tiempo"
+    ]),
     vendedor: obtenerCampo(fila, [
       "nombredelvendedor",
       "vendedor"
@@ -116,6 +121,10 @@ fetch(URL)
       descripcionEl.className = "descripcion";
       descripcionEl.textContent = p.descripcion || "";
 
+      const tiempoEl = document.createElement("p");
+      tiempoEl.className = "tiempo";
+      tiempoEl.textContent = p.tiempo ? "⏳ Producción: " + p.tiempo : "";
+
       const vendedor = document.createElement("p");
       vendedor.textContent = p.vendedor || "";
 
@@ -128,7 +137,16 @@ fetch(URL)
       btn.href = "#";
       btn.textContent = "Ver producto";
 
-      card.append(imgEl, h3, tipoEl, descripcionEl, vendedor, precio, btn);
+      card.append(
+        imgEl,
+        h3,
+        tipoEl,
+        descripcionEl,
+        tiempoEl,
+        vendedor,
+        precio,
+        btn
+      );
       contenedor.appendChild(card);
 
       btn.addEventListener("click", (e) => {
@@ -138,7 +156,9 @@ fetch(URL)
         modalImg.src = p.imagen || "";
         modalNombre.textContent = p.nombre || "";
         modalTipo.textContent = "Tipo: " + (p.tipo || "");
-        modalDescripcion.textContent = "Descripción: " + (p.descripcion || "");
+        modalDescripcion.textContent =
+          "Descripción: " + (p.descripcion || "") +
+          (p.tiempo ? " | ⏳ Producción: " + p.tiempo : "");
         modalVendedor.textContent = "Vendedor: " + (p.vendedor || "");
         modalPrecio.textContent = p.precio ? "$" + p.precio : "";
         modalContacto.href = p.contacto || "#";
@@ -163,3 +183,4 @@ function createNoImg() {
   div.textContent = "Imagen no disponible";
   return div;
 }
+
