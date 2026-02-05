@@ -7,53 +7,26 @@ contenedor.innerHTML = "<p>Cargando productos…</p>";
 const modal = document.getElementById("modal");
 const modalImg = document.getElementById("modal-img");
 const modalNombre = document.getElementById("modal-nombre");
+const modalTipo = document.getElementById("modal-tipo");
+const modalDescripcion = document.getElementById("modal-descripcion");
 const modalVendedor = document.getElementById("modal-vendedor");
 const modalPrecio = document.getElementById("modal-precio");
 const modalContacto = document.getElementById("modal-contacto");
 const spanClose = document.querySelector(".modal-close");
 
 /* ===========================
-   NORMALIZADOR ROBUSTO
+   NORMALIZADOR DIRECTO
 =========================== */
-function limpiar(str) {
-  return str
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
-}
-
 function normalizarProducto(fila) {
-  const res = {
-    imagen: "",
-    nombre: "",
-    vendedor: "",
-    precio: "",
-    contacto: ""
+  return {
+    imagen: fila["Link de Imagen"] || "",
+    nombre: fila["Nombre del producto"] || "",
+    tipo: fila["Tipo de producto"] || "",
+    descripcion: fila["Descripción del producto"] || "",
+    vendedor: fila["Nombre del vendedor"] || "",
+    precio: fila["Precio"] || "",
+    contacto: fila["Contacto"] || ""
   };
-
-  for (const key in fila) {
-    const k = limpiar(key);
-    const value = (fila[key] || "").toString().trim();
-    if (!value) continue;
-
-    if (!res.imagen && (k.includes("imagen") || k.includes("foto"))) {
-      res.imagen = value;
-    }
-    else if (!res.nombre && (k.includes("producto") || k.includes("titulo") || k.includes("nombre"))) {
-      res.nombre = value;
-    }
-    else if (!res.vendedor && (k.includes("vendedor") || k.includes("autor") || k.includes("creador"))) {
-      res.vendedor = value;
-    }
-    else if (!res.precio && (k.includes("precio") || k.includes("valor") || k.includes("costo"))) {
-      res.precio = value;
-    }
-    else if (!res.contacto && (k.includes("contacto") || k.includes("whatsapp") || k.includes("instagram") || k.includes("ig"))) {
-      res.contacto = value;
-    }
-  }
-
-  return res;
 }
 
 /* ===========================
@@ -75,7 +48,7 @@ fetch(URL)
       const card = document.createElement("div");
       card.className = "product";
 
-      // Imagen (sin validar extensión)
+      // Imagen (fallback)
       let imgEl;
       if (p.imagen && p.imagen.startsWith("http")) {
         imgEl = document.createElement("img");
@@ -89,6 +62,14 @@ fetch(URL)
       const h3 = document.createElement("h3");
       h3.textContent = p.nombre || "Sin título";
 
+      const tipoEl = document.createElement("p");
+      tipoEl.className = "tipo";
+      tipoEl.textContent = p.tipo || "";
+
+      const descripcionEl = document.createElement("p");
+      descripcionEl.className = "descripcion";
+      descripcionEl.textContent = p.descripcion || "";
+
       const vendedor = document.createElement("p");
       vendedor.textContent = p.vendedor || "";
 
@@ -101,7 +82,7 @@ fetch(URL)
       btn.href = "#";
       btn.textContent = "Ver producto";
 
-      card.append(imgEl, h3, vendedor, precio, btn);
+      card.append(imgEl, h3, tipoEl, descripcionEl, vendedor, precio, btn);
       contenedor.appendChild(card);
 
       // Modal
@@ -113,6 +94,8 @@ fetch(URL)
         modalImg.onerror = () => modalImg.src = "";
 
         modalNombre.textContent = p.nombre || "";
+        modalTipo.textContent = "Tipo: " + (p.tipo || "");
+        modalDescripcion.textContent = "Descripción: " + (p.descripcion || "");
         modalVendedor.textContent = "Vendedor: " + (p.vendedor || "");
         modalPrecio.textContent = p.precio ? "$" + p.precio : "";
         modalContacto.href = p.contacto || "#";
