@@ -205,3 +205,14 @@ footer {
     max-width: 600px;
   }
 }
+
+.product .tiempo {
+  font-size: 0.85rem;
+  color: #444;
+  background: #f0ece5;
+  padding: 6px 8px;
+  border-radius: 6px;
+  display: inline-block;
+  margin: 6px 0;
+  font-weight: 500;
+}
