@@ -15,43 +15,64 @@ const modalContacto = document.getElementById("modal-contacto");
 const spanClose = document.querySelector(".modal-close");
 
 /* ===========================
-   NORMALIZADOR ROBUSTO
+   UTILIDADES
+=========================== */
+function normalizarClave(str) {
+  return str
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]/g, "");
+}
+
+function obtenerCampo(fila, posibles) {
+  for (const key in fila) {
+    const keyNorm = normalizarClave(key);
+    if (posibles.includes(keyNorm)) {
+      return fila[key];
+    }
+  }
+  return "";
+}
+
+/* ===========================
+   NORMALIZADOR DEFINITIVO
 =========================== */
 function normalizarProducto(fila) {
   return {
-    imagen:
-      fila["Link_de_Imagen"] ||
-      fila["Link de Imagen"] ||
-      fila["imagen"] ||
-      "",
-    nombre:
-      fila["Nombre_del_producto"] ||
-      fila["Nombre del producto"] ||
-      fila["nombre"] ||
-      "",
-    tipo:
-      fila["Tipo_de_producto"] ||
-      fila["Tipo de producto"] ||
-      fila["tipo"] ||
-      "",
-    descripcion:
-      fila["Descripcion_del_producto"] ||
-      fila["Descripción del producto"] ||
-      fila["descripcion"] ||
-      "",
-    vendedor:
-      fila["Nombre_del_vendedor"] ||
-      fila["Nombre del vendedor"] ||
-      fila["vendedor"] ||
-      "",
-    precio:
-      fila["Precio"] ||
-      fila["precio"] ||
-      "",
-    contacto:
-      fila["Contacto"] ||
-      fila["contacto"] ||
-      ""
+    imagen: obtenerCampo(fila, [
+      "linkdeimagen",
+      "imagen",
+      "imagendelproducto",
+      "linkimagen"
+    ]),
+    nombre: obtenerCampo(fila, [
+      "nombredelproducto",
+      "producto",
+      "nombre"
+    ]),
+    tipo: obtenerCampo(fila, [
+      "tipodeproducto",
+      "tipo",
+      "categoria"
+    ]),
+    descripcion: obtenerCampo(fila, [
+      "descripciondelproducto",
+      "descripcion",
+      "detalle"
+    ]),
+    vendedor: obtenerCampo(fila, [
+      "nombredelvendedor",
+      "vendedor"
+    ]),
+    precio: obtenerCampo(fila, [
+      "precio",
+      "valor"
+    ]),
+    contacto: obtenerCampo(fila, [
+      "contacto",
+      "linkdecontacto"
+    ])
   };
 }
 
@@ -74,7 +95,6 @@ fetch(URL)
       const card = document.createElement("div");
       card.className = "product";
 
-      // Imagen
       let imgEl;
       if (p.imagen && p.imagen.startsWith("http")) {
         imgEl = document.createElement("img");
@@ -111,21 +131,17 @@ fetch(URL)
       card.append(imgEl, h3, tipoEl, descripcionEl, vendedor, precio, btn);
       contenedor.appendChild(card);
 
-      // Modal
       btn.addEventListener("click", (e) => {
         e.preventDefault();
         modal.style.display = "block";
 
         modalImg.src = p.imagen || "";
-        modalImg.onerror = () => modalImg.src = "";
-
         modalNombre.textContent = p.nombre || "";
         modalTipo.textContent = "Tipo: " + (p.tipo || "");
         modalDescripcion.textContent = "Descripción: " + (p.descripcion || "");
         modalVendedor.textContent = "Vendedor: " + (p.vendedor || "");
         modalPrecio.textContent = p.precio ? "$" + p.precio : "";
         modalContacto.href = p.contacto || "#";
-        modalContacto.target = "_blank";
       });
     });
   })
@@ -135,21 +151,12 @@ fetch(URL)
   });
 
 /* ===========================
-   CIERRES MODAL
+   MODAL
 =========================== */
 spanClose.onclick = () => modal.style.display = "none";
+window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
+window.addEventListener("keydown", e => { if (e.key === "Escape") modal.style.display = "none"; });
 
-window.onclick = (e) => {
-  if (e.target === modal) modal.style.display = "none";
-};
-
-window.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") modal.style.display = "none";
-});
-
-/* ===========================
-   FALLBACK IMAGEN
-=========================== */
 function createNoImg() {
   const div = document.createElement("div");
   div.className = "no-img";
