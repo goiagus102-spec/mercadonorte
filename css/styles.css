@@ -89,6 +89,23 @@ h2 {
 
 .product h3 {
   margin: 10px 0 5px;
+  font-size: 1.2rem;
+}
+
+.product .tipo {
+  font-weight: 500;
+  color: #555;
+  margin: 4px 0;
+}
+
+.product .descripcion {
+  font-size: 0.9rem;
+  color: #777;
+  margin: 4px 0 8px 0;
+}
+
+.product p {
+  margin: 4px 0;
 }
 
 .price {
@@ -139,6 +156,25 @@ footer {
   margin-bottom: 15px;
 }
 
+.modal-content h3 {
+  margin: 10px 0;
+}
+
+.modal-content p {
+  margin: 6px 0;
+  color: #333;
+}
+
+#modal-tipo {
+  font-weight: 500;
+}
+
+#modal-descripcion {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
 .modal-close {
   position: absolute;
   top: 10px;
@@ -169,4 +205,3 @@ footer {
     max-width: 600px;
   }
 }
-
