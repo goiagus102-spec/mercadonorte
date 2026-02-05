@@ -15,17 +15,43 @@ const modalContacto = document.getElementById("modal-contacto");
 const spanClose = document.querySelector(".modal-close");
 
 /* ===========================
-   NORMALIZADOR DIRECTO
+   NORMALIZADOR ROBUSTO
 =========================== */
 function normalizarProducto(fila) {
   return {
-    imagen: fila["Link de Imagen"] || "",
-    nombre: fila["Nombre del producto"] || "",
-    tipo: fila["Tipo de producto"] || "",
-    descripcion: fila["Descripción del producto"] || "",
-    vendedor: fila["Nombre del vendedor"] || "",
-    precio: fila["Precio"] || "",
-    contacto: fila["Contacto"] || ""
+    imagen:
+      fila["Link_de_Imagen"] ||
+      fila["Link de Imagen"] ||
+      fila["imagen"] ||
+      "",
+    nombre:
+      fila["Nombre_del_producto"] ||
+      fila["Nombre del producto"] ||
+      fila["nombre"] ||
+      "",
+    tipo:
+      fila["Tipo_de_producto"] ||
+      fila["Tipo de producto"] ||
+      fila["tipo"] ||
+      "",
+    descripcion:
+      fila["Descripcion_del_producto"] ||
+      fila["Descripción del producto"] ||
+      fila["descripcion"] ||
+      "",
+    vendedor:
+      fila["Nombre_del_vendedor"] ||
+      fila["Nombre del vendedor"] ||
+      fila["vendedor"] ||
+      "",
+    precio:
+      fila["Precio"] ||
+      fila["precio"] ||
+      "",
+    contacto:
+      fila["Contacto"] ||
+      fila["contacto"] ||
+      ""
   };
 }
 
@@ -48,7 +74,7 @@ fetch(URL)
       const card = document.createElement("div");
       card.className = "product";
 
-      // Imagen (fallback)
+      // Imagen
       let imgEl;
       if (p.imagen && p.imagen.startsWith("http")) {
         imgEl = document.createElement("img");
